@@ -5,9 +5,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.squareup.picasso.Picasso
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.item_list.*
+import kotlinx.android.synthetic.main.item_list.view.*
 
 class RecyclerViewAdapter(private val context: Context, private val items: List<Item>)
     : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
@@ -21,13 +22,11 @@ class RecyclerViewAdapter(private val context: Context, private val items: List<
 
     override fun getItemCount(): Int = items.size
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val name = itemView.findViewById<TextView>(R.id.name)
-        private val image = itemView.findViewById<ImageView>(R.id.image)
+    class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
+        LayoutContainer {
 
         fun bindItem(items: Item) {
-            name.text = items.name
+            itemView.name.text = items.name
             items.image?.let { Picasso.get().load(it).into(image) }
         }
     }
