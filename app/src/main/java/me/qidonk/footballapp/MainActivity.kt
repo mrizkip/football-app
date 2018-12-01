@@ -1,9 +1,11 @@
-package me.qidonk.football_app
+package me.qidonk.footballapp
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import me.qidonk.footballapp.adapter.RecyclerViewAdapter
+import me.qidonk.footballapp.entity.Item
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,9 +24,10 @@ class MainActivity : AppCompatActivity() {
     private fun initData() {
         val name = resources.getStringArray(R.array.club_name)
         val image = resources.obtainTypedArray(R.array.club_image)
+        val description = resources.getStringArray(R.array.club_describtion)
         items.clear()
         for (i in name.indices) {
-            items.add(Item(name[i], image.getResourceId(i, 0)))
+            items.add(Item(name[i], image.getResourceId(i, 0), description[i]))
         }
 
         // recycler the typed array

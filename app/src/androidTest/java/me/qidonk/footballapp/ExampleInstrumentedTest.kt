@@ -1,4 +1,4 @@
-package me.qidonk.football_app
+package me.qidonk.footballapp
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

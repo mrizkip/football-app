@@ -1,4 +1,4 @@
-package me.qidonk.football_app
+package me.qidonk.footballapp
 
 import org.junit.Test
 
