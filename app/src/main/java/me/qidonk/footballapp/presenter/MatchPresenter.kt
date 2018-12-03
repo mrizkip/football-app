@@ -4,12 +4,12 @@ import com.google.gson.Gson
 import me.qidonk.footballapp.datasource.api.TheSportDBApi
 import me.qidonk.footballapp.model.Matches
 import me.qidonk.footballapp.repository.ApiRepository
-import me.qidonk.footballapp.view.MainView
+import me.qidonk.footballapp.view.MatchView
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MainPresenter(
-    private val view: MainView,
+class MatchPresenter(
+    private val view: MatchView,
     private val apiRepository: ApiRepository,
     private val gson: Gson
 ) {

@@ -13,4 +13,9 @@
     <string name="midfield">Midfield</string>
     <string name="forward">Forward</string>
     <string name="subtitutes">Subtitutes</string>
+    <string name="favorites">Favorites</string>
+    <string name="prev_match">Prev Match</string>
+    <string name="next_match">Next Match</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

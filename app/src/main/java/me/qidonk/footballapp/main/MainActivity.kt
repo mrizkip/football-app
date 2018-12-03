@@ -1,11 +1,10 @@
 package me.qidonk.footballapp.main
 
 import android.os.Bundle
-import android.support.v4.view.ViewPager
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import me.qidonk.footballapp.R
-import me.qidonk.footballapp.main.adapter.MatchesViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,18 +13,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupViewPager(main_viewPager)
-        main_tabLayout.setupWithViewPager(main_viewPager)
+        main_bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.menu_prevMatch -> loadFragment(LastMatchFragment.newInstance(), savedInstanceState)
+                R.id.menu_nextMatch -> loadFragment(NextMatchFragment.newInstance(), savedInstanceState)
+                R.id.menu_favorites -> loadFragment(FavoriteFragment.newInstance(), savedInstanceState)
+            }
+            true
+        }
+        main_bottomNavigation.selectedItemId = R.id.menu_prevMatch
     }
 
-    private fun setupViewPager(viewPager: ViewPager) {
-        val adapter = MatchesViewPagerAdapter(supportFragmentManager)
-        val lastMatchFragment = LastMatchFragment.newInstance()
-        val nextMatchFragment = NextMatchFragment.newInstance()
-
-        adapter.addFragment(lastMatchFragment)
-        adapter.addFragment(nextMatchFragment)
-
-        viewPager.adapter = adapter
+    private fun loadFragment(fragment: Fragment, savedInstanceState: Bundle?) {
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_frameLayout, fragment)
+                .commit()
+        }
     }
+
 }
