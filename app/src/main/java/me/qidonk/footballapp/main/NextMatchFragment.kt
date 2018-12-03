@@ -13,12 +13,12 @@ import kotlinx.android.synthetic.main.fragment_next_match.view.*
 import me.qidonk.footballapp.R
 import me.qidonk.footballapp.main.adapter.MatchAdapter
 import me.qidonk.footballapp.model.Match
-import me.qidonk.footballapp.presenter.MainPresenter
+import me.qidonk.footballapp.presenter.MatchPresenter
 import me.qidonk.footballapp.repository.ApiRepository
-import me.qidonk.footballapp.view.MainView
+import me.qidonk.footballapp.view.MatchView
 import org.jetbrains.anko.support.v4.onRefresh
 
-class NextMatchFragment : Fragment(), MainView {
+class NextMatchFragment : Fragment(), MatchView {
 
     companion object {
         fun newInstance(): Fragment {
@@ -28,7 +28,7 @@ class NextMatchFragment : Fragment(), MainView {
     }
 
     private var matches: MutableList<Match> = mutableListOf()
-    private lateinit var presenter: MainPresenter
+    private lateinit var presenter: MatchPresenter
     private lateinit var adapter: MatchAdapter
     private lateinit var leagueName: String
     private lateinit var leagueId: String
@@ -52,7 +52,7 @@ class NextMatchFragment : Fragment(), MainView {
         val gson = Gson()
         leagueName = "English Premiere League"
         leagueId = "4328"
-        presenter = MainPresenter(this, repository, gson)
+        presenter = MatchPresenter(this, repository, gson)
         presenter.getNextMatch(leagueId)
 
         nextMatch_swipeRefresh.onRefresh {
