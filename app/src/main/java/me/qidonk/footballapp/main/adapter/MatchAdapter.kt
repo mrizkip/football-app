@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import me.qidonk.footballapp.R
+import me.qidonk.footballapp.main.DetailMatchActivity
 import me.qidonk.footballapp.model.Match
+import org.jetbrains.anko.startActivity
 
 class MatchAdapter(
     private val context: Context?,
-    private val matches: List<Match>,
-    private val listener: (Match) -> Unit
+    private val matches: List<Match>
 ) : RecyclerView.Adapter<MatchAdapter.MatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
@@ -24,7 +25,7 @@ class MatchAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: MatchViewHolder, position: Int) {
-        viewHolder.bindItem(matches[position], listener)
+        viewHolder.bindItem(matches[position])
     }
 
     class MatchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -34,7 +35,7 @@ class MatchAdapter(
         private val homeScore: TextView = view.findViewById(R.id.itemMatch_homeScore)
         private val awayScore: TextView = view.findViewById(R.id.itemMatch_awayScore)
 
-        fun bindItem(match: Match, listener: (Match) -> Unit) {
+        fun bindItem(match: Match) {
             date.text = match.matchDate
             homeTeam.text = match.homeTeam
             awayTeam.text = match.awayTeam
@@ -42,7 +43,11 @@ class MatchAdapter(
             awayScore.text = match.scoreAway
 
             itemView.setOnClickListener {
-                listener(match)
+                itemView.context.startActivity<DetailMatchActivity>(
+                    "matchId" to match.matchId,
+                    "homeTeamId" to match.homeTeamId,
+                    "awayTeamId" to match.awayTeamId
+                )
             }
         }
     }

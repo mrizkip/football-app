@@ -17,7 +17,6 @@ import me.qidonk.footballapp.presenter.MainPresenter
 import me.qidonk.footballapp.repository.ApiRepository
 import me.qidonk.footballapp.view.MainView
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.startActivity
 
 class NextMatchFragment : Fragment(), MainView {
 
@@ -46,7 +45,7 @@ class NextMatchFragment : Fragment(), MainView {
         super.onViewCreated(view, savedInstanceState)
 
         view.nextMatch_recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = MatchAdapter(context, matches, { match: Match -> showDetailMatch(match) })
+        adapter = MatchAdapter(context, matches)
         view.nextMatch_recyclerView.adapter = adapter
 
         val repository = ApiRepository()
@@ -60,14 +59,6 @@ class NextMatchFragment : Fragment(), MainView {
             matches.clear()
             presenter.getNextMatch(leagueId)
         }
-    }
-
-    private fun showDetailMatch(match: Match) {
-        startActivity<DetailMatchActivity>(
-            "matchId" to match.matchId,
-            "homeTeamId" to match.homeTeamId,
-            "awayTeamId" to match.awayTeamId
-        )
     }
 
     override fun showLoading() {
