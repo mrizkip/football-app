@@ -20,6 +20,13 @@ private const val ARG_PARAM2 = "param2"
  */
 class FavoritesFragment : Fragment() {
 
+    companion object {
+        fun newInstance(): Fragment {
+            val fragment = FavoritesFragment()
+            return fragment
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

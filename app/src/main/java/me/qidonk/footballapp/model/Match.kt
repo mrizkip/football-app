@@ -79,7 +79,10 @@ data class Match(
     var substitutesAway: String? = null,
 
     @SerializedName("dateEvent")
-    var matchDate: String? = null
+    var matchDate: String? = null,
+
+    @SerializedName("strTime")
+    var matchTime: String? = null
 
 ) : Parcelable
 

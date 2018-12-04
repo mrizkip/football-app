@@ -41,13 +41,13 @@ class FavoriteMatchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.favorite_recyclerView.layoutManager = LinearLayoutManager(context)
+        view.favoritematch_recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = FavoriteMatchAdapter(context, favoritesMatch)
-        view.favorite_recyclerView.adapter = adapter
+        view.favoritematch_recyclerView.adapter = adapter
 
         showFavorites()
 
-        favorite_swipeRefresh.onRefresh {
+        favoriteMatch_swipeRefresh.onRefresh {
             showFavorites()
         }
     }
@@ -58,15 +58,15 @@ class FavoriteMatchFragment : Fragment() {
     }
 
     private fun showFavorites() {
-        favorite_progressBar.visibility = View.VISIBLE
+        favoriteMatch_progressBar.visibility = View.VISIBLE
         context?.database?.use {
             val result = select(FavoriteMatch.TABLE_FAVORITE_MATCH)
             val favorites = result.parseList(classParser<FavoriteMatch>())
-            favorite_swipeRefresh.isRefreshing = false
+            favoriteMatch_swipeRefresh.isRefreshing = false
             favoritesMatch.clear()
             favoritesMatch.addAll(favorites)
             adapter.notifyDataSetChanged()
-            favorite_progressBar.visibility = View.GONE
+            favoriteMatch_progressBar.visibility = View.GONE
         }
     }
 }

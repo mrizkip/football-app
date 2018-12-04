@@ -56,6 +56,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         favoriteState()
         setFavorite()
         detailMatch_date.text = matches[0].matchDate
+        detailMatch_time.text = matches[0].matchTime
         detailMatch_homeScore.text = matches[0].scoreHome
         detailMatch_awayScore.text = matches[0].scoreAway
         detailMatch_homeTeam.text = matches[0].homeTeam

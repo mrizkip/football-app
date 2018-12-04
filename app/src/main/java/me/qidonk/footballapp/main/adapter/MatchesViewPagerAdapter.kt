@@ -7,10 +7,10 @@ import kotlinx.android.synthetic.main.notification_template_big_media.*
 
 class MatchesViewPagerAdapter(fragmentManager: FragmentManager?): FragmentPagerAdapter(fragmentManager) {
     private val fragments = ArrayList<Fragment>()
-    private val tabTitles = arrayOf("LAST MATCH", "NEXT MATCH")
+    private val tabTitles = arrayOf("NEXT MATCH", "LAST MATCH")
 
-    override fun getItem(p0: Int): Fragment {
-        return fragments.get(p0)
+    override fun getItem(position: Int): Fragment {
+        return fragments.get(position)
     }
 
     override fun getCount(): Int {

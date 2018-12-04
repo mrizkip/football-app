@@ -34,9 +34,11 @@ class MatchAdapter(
         private val awayTeam: TextView = view.findViewById(R.id.itemMatch_awayTeam)
         private val homeScore: TextView = view.findViewById(R.id.itemMatch_homeScore)
         private val awayScore: TextView = view.findViewById(R.id.itemMatch_awayScore)
+        private val time: TextView = view.findViewById(R.id.itemMatch_time)
 
         fun bindItem(match: Match) {
             date.text = match.matchDate
+            time.text = match.matchTime
             homeTeam.text = match.homeTeam
             awayTeam.text = match.awayTeam
             homeScore.text = match.scoreHome
