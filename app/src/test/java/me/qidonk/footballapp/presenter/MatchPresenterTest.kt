@@ -1,6 +1,9 @@
 package me.qidonk.footballapp.presenter
 
 import com.google.gson.Gson
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import me.qidonk.footballapp.TestContextProvider
 import me.qidonk.footballapp.datasource.api.TheSportDBApi
 import me.qidonk.footballapp.model.Match
 import me.qidonk.footballapp.model.Matches
@@ -23,10 +26,11 @@ class MatchPresenterTest {
     @Mock
     private lateinit var matchPresenter: MatchPresenter
 
+
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        matchPresenter = MatchPresenter(matchView, apiRepository, gson)
+        matchPresenter = MatchPresenter(matchView, apiRepository, gson, TestContextProvider())
     }
 
     @Test
@@ -35,15 +39,21 @@ class MatchPresenterTest {
         val response = Matches(matches)
         val leagueId = "4328"
 
-        `when`(gson.fromJson(apiRepository
-            .doRequest(TheSportDBApi.getLastMatch(leagueId)),
-            Matches::class.java)).thenReturn(response)
+        GlobalScope.launch {
+            `when`(
+                gson.fromJson(
+                    apiRepository
+                        .doRequest(TheSportDBApi.getLastMatch(leagueId)).await(),
+                    Matches::class.java
+                )
+            ).thenReturn(response)
 
-        matchPresenter.getLastMatch(leagueId)
+            matchPresenter.getLastMatch(leagueId)
 
-        verify(matchView).showLoading()
-        verify(matchView).showMatchList(matches)
-        verify(matchView).hideLoading()
+            verify(matchView).showLoading()
+            verify(matchView).showMatchList(matches)
+            verify(matchView).hideLoading()
+        }
     }
 
     @Test
@@ -52,15 +62,20 @@ class MatchPresenterTest {
         val response = Matches(matches)
         val leagueId = "4328"
 
-        `when`(gson.fromJson(apiRepository
-            .doRequest(TheSportDBApi.getNextMatch(leagueId)),
-            Matches::class.java)).thenReturn(response)
+        GlobalScope.launch {
+            `when`(
+                gson.fromJson(
+                    apiRepository
+                        .doRequest(TheSportDBApi.getNextMatch(leagueId)).await(),
+                    Matches::class.java
+                )
+            ).thenReturn(response)
 
-        matchPresenter.getNextMatch(leagueId)
-        Thread.sleep(100) //be sure that the async part is executed
+            matchPresenter.getNextMatch(leagueId)
 
-        verify(matchView).showLoading()
-        verify(matchView).showMatchList(matches)
-        verify(matchView).hideLoading()
+            verify(matchView).showLoading()
+            verify(matchView).showMatchList(matches)
+            verify(matchView).hideLoading()
+        }
     }
 }
