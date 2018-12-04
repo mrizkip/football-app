@@ -90,15 +90,17 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
-            R.id.home -> {
+            android.R.id.home -> {
                 finish()
                 true
             }
             R.id.add_to_favorite -> {
-                if (isFavorite) removeFromFavorite() else addFavorite()
+                if (mMatch != null) {
+                    if (isFavorite) removeFromFavorite() else addFavorite()
 
-                isFavorite = !isFavorite
-                setFavorite()
+                    isFavorite = !isFavorite
+                    setFavorite()
+                }
                 true
             }
 
