@@ -95,10 +95,12 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
                 true
             }
             R.id.add_to_favorite -> {
-                if (isFavorite) removeFromFavorite() else addFavorite()
+                if (mMatch != null) {
+                    if (isFavorite) removeFromFavorite() else addFavorite()
 
-                isFavorite = !isFavorite
-                setFavorite()
+                    isFavorite = !isFavorite
+                    setFavorite()
+                }
                 true
             }
 
