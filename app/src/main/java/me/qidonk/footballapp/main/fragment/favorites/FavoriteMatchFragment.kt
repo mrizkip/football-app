@@ -1,4 +1,4 @@
-package me.qidonk.footballapp.main
+package me.qidonk.footballapp.main.fragment.favorites
 
 
 import android.os.Bundle
@@ -7,8 +7,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_favorite.*
-import kotlinx.android.synthetic.main.fragment_favorite.view.*
+import kotlinx.android.synthetic.main.fragment_favorite_match.*
+import kotlinx.android.synthetic.main.fragment_favorite_match.view.*
 
 import me.qidonk.footballapp.R
 import me.qidonk.footballapp.main.adapter.FavoriteMatchAdapter
@@ -18,11 +18,11 @@ import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.support.v4.onRefresh
 
-class FavoriteFragment : Fragment() {
+class FavoriteMatchFragment : Fragment() {
 
     companion object {
-        fun newInstance(): FavoriteFragment {
-            val fragment = FavoriteFragment()
+        fun newInstance(): FavoriteMatchFragment {
+            val fragment = FavoriteMatchFragment()
             return fragment
         }
     }
@@ -35,7 +35,7 @@ class FavoriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false)
+        return inflater.inflate(R.layout.fragment_favorite_match, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import me.qidonk.footballapp.R
+import me.qidonk.footballapp.main.fragment.favorites.FavoriteMatchFragment
+import me.qidonk.footballapp.main.fragment.matches.LastMatchFragment
+import me.qidonk.footballapp.main.fragment.matches.NextMatchFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +20,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.menu_prevMatch -> loadFragment(LastMatchFragment.newInstance(), savedInstanceState)
                 R.id.menu_nextMatch -> loadFragment(NextMatchFragment.newInstance(), savedInstanceState)
-                R.id.menu_favorites -> loadFragment(FavoriteFragment.newInstance(), savedInstanceState)
+                R.id.menu_favorites -> loadFragment(FavoriteMatchFragment.newInstance(), savedInstanceState)
             }
             true
         }

@@ -23,6 +23,14 @@
         </activity>
         <activity android:name=".main.DetailMatchActivity">
         </activity>
+        <activity android:name=".main.PlayerDetailActivity">
+        </activity>
+        <activity android:name=".main.SearchMatchActivity">
+        </activity>
+        <activity android:name=".main.SearchTeamActivity">
+        </activity>
+        <activity android:name=".main.TeamDetailActivity">
+        </activity>
     </application>
 
 </manifest>
