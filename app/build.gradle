@@ -55,6 +55,7 @@ configurations.all {
         if (details.requested.group == 'com.android.support'
                 && !details.requested.name.contains('multidex')) {
             details.useVersion "$support_lib_version"
+
         }
     }
 }

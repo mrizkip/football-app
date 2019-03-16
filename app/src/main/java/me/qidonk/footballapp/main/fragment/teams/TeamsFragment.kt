@@ -1,6 +1,7 @@
 package me.qidonk.footballapp.main.fragment.teams
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_teams.*
 import kotlinx.android.synthetic.main.fragment_teams.view.*
 import me.qidonk.footballapp.R
 import me.qidonk.footballapp.main.SearchTeamActivity
+import me.qidonk.footballapp.main.TeamDetailActivity
 import me.qidonk.footballapp.main.adapter.TeamAdapter
 import me.qidonk.footballapp.model.Team
 import me.qidonk.footballapp.presenter.TeamPresenter
@@ -49,7 +51,11 @@ class TeamsFragment : Fragment(), TeamsView {
         setHasOptionsMenu(true)
 
         view.teams_recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = TeamAdapter(context, teams)
+        adapter = TeamAdapter(context, teams) {
+            val intent = Intent(context, TeamDetailActivity::class.java)
+                    .putExtra("teamId", it.teamId)
+            startActivity(intent)
+        }
         view.teams_recyclerView.adapter = adapter
 
         val request = ApiRepository()

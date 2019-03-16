@@ -13,11 +13,20 @@ import me.qidonk.footballapp.model.Team
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 
-class TeamAdapter(private val context: Context?, val teams: List<Team>) :
-    RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
+class TeamAdapter(private val context: Context?, val teams: List<Team>, private val clickListener: (Team) -> Unit) :
+        RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
-        return TeamViewHolder(LayoutInflater.from(context).inflate(R.layout.item_team, parent, false))
+        val rootView = LayoutInflater.from(context).inflate(R.layout.item_team, parent, false)
+
+        return TeamViewHolder(rootView).apply {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    clickListener(teams[position])
+                }
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -36,11 +45,11 @@ class TeamAdapter(private val context: Context?, val teams: List<Team>) :
             Picasso.get().load(team.teamLogo).into(teamLogo)
             teamName.text = team.teamName
 
-            itemView.onClick {
-                itemView.context.startActivity<TeamDetailActivity>(
-                    "teamId" to team.teamId
-                )
-            }
+//            itemView.onClick {
+//                itemView.context.startActivity<TeamDetailActivity>(
+//                        "teamId" to team.teamId
+//                )
+//            }
         }
     }
 }

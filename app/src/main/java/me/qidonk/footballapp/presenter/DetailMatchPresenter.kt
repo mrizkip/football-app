@@ -1,7 +1,6 @@
 package me.qidonk.footballapp.presenter
 
 import com.google.gson.Gson
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import me.qidonk.footballapp.datasource.api.TheSportDBApi
@@ -32,7 +31,8 @@ class DetailMatchPresenter(
 
     fun getHomeTeamLogo(teamId: String?) {
         GlobalScope.launch(context.main) {
-            val data = gson.fromJson(apiRepository
+            val data = gson.fromJson(
+                apiRepository
                     .doRequest(TheSportDBApi.getTeamDetail(teamId)).await(),
                 Teams::class.java
             )
