@@ -44,12 +44,6 @@ class TeamAdapter(private val context: Context?, val teams: List<Team>, private 
         fun bindItem(team: Team) {
             Picasso.get().load(team.teamLogo).into(teamLogo)
             teamName.text = team.teamName
-
-//            itemView.onClick {
-//                itemView.context.startActivity<TeamDetailActivity>(
-//                        "teamId" to team.teamId
-//                )
-//            }
         }
     }
 }
