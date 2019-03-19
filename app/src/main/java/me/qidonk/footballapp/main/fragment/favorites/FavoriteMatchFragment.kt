@@ -22,8 +22,7 @@ class FavoriteMatchFragment : Fragment() {
 
     companion object {
         fun newInstance(): FavoriteMatchFragment {
-            val fragment = FavoriteMatchFragment()
-            return fragment
+            return FavoriteMatchFragment()
         }
     }
 

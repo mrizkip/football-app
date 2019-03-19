@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 
-class TeamDetailViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class FavoriteViewPagerAdapter(fm: FragmentManager?): FragmentPagerAdapter(fm) {
     private val fragments = ArrayList<Fragment>()
 
-    private val tabTitles = arrayOf("OVERVIEW", "PLAYERS")
+    private val tabTitles = arrayOf("MATCHES", "TEAMS")
 
     override fun getItem(position: Int): Fragment {
         return fragments[position]

@@ -3,27 +3,20 @@ package me.qidonk.footballapp.main.fragment.favorites
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_favorites.*
 
 import me.qidonk.footballapp.R
+import me.qidonk.footballapp.main.adapter.FavoriteViewPagerAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class FavoritesFragment : Fragment() {
 
     companion object {
         fun newInstance(): Fragment {
-            val fragment = FavoritesFragment()
-            return fragment
+            return FavoritesFragment()
         }
     }
 
@@ -35,5 +28,21 @@ class FavoritesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        setupViewPager(favorites_viewPager)
+        favorites_tabLayout.setupWithViewPager(favorites_viewPager)
+    }
+
+    private fun setupViewPager(viewPager: ViewPager?) {
+        val adapter = FavoriteViewPagerAdapter(childFragmentManager)
+        val matchFragment = FavoriteMatchFragment.newInstance()
+        val teamFragment = FavoriteTeamFragment.newInstance()
+
+        adapter.addFragment(matchFragment)
+        adapter.addFragment(teamFragment)
+
+        viewPager?.adapter = adapter
+    }
 }
