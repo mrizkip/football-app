@@ -21,6 +21,7 @@
     <string name="search">Search</string>
 
     <string name="team_logo">team logo</string>
+    <string name="player_detail_player_image">Player Image</string>
 
     <array name="league_array">
         <item>English Premier League</item>

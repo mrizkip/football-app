@@ -1,10 +1,7 @@
 package me.qidonk.footballapp.model
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class Player(
         @SerializedName("idPlayer")
         var playerId: String?,
@@ -29,4 +26,4 @@ data class Player(
 
         @SerializedName("strWeight")
         var playerWeight: String?
-) : Parcelable
+)

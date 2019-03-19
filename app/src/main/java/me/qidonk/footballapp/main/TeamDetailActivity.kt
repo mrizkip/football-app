@@ -22,7 +22,6 @@ import me.qidonk.footballapp.presenter.TeamDetailPresenter
 import me.qidonk.footballapp.repository.ApiRepository
 import me.qidonk.footballapp.utils.database
 import me.qidonk.footballapp.view.TeamDetailView
-import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
@@ -30,7 +29,6 @@ import org.jetbrains.anko.db.select
 import java.sql.SQLClientInfoException
 
 class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
-    private val log = AnkoLogger(this::class.java)
 
     private var mTeam: Team? = null
 
