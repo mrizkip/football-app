@@ -58,6 +58,11 @@ class FavoriteMatchFragment : Fragment(), FavoriteMatchView {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.getFavoriteMatch()
+    }
+
     override fun showLoading() {
         favoriteMatch_progressBar.visibility = View.VISIBLE
     }
