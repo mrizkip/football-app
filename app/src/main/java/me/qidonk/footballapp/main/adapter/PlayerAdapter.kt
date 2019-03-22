@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_player.view.*
 import me.qidonk.footballapp.R
 import me.qidonk.footballapp.model.Player
 
-class PlayerAdapter(private val context: Context?, val players: List<Player>, val clickListener: (Player) -> Unit) :
+class PlayerAdapter(private val context: Context?, private val players: List<Player>, val clickListener: (Player) -> Unit) :
         RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {

@@ -20,7 +20,7 @@ class PlayerDetailPresenter(private val view: PlayerDetailView,
                     .doRequest(TheSportDBApi.getPlayerDetail(playerId)).await(),
                     PlayerDetail::class.java)
 
-            view.showTeamDetail(data.player[0])
+            view.showPlayerDetail(data.player[0])
         }
     }
 }

@@ -4,20 +4,16 @@ package me.qidonk.footballapp.main.fragment.matches
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
-import android.support.v7.widget.SearchView
 import android.view.*
 import kotlinx.android.synthetic.main.fragment_matches.*
 import me.qidonk.footballapp.R
-import me.qidonk.footballapp.main.SearchMatchActivity
 import me.qidonk.footballapp.main.adapter.MatchesViewPagerAdapter
-import org.jetbrains.anko.startActivity
 
 class MatchesFragment : Fragment() {
 
     companion object {
         fun newInstance(): Fragment {
-            val fragment = MatchesFragment()
-            return fragment
+            return MatchesFragment()
         }
     }
 

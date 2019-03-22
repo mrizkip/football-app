@@ -35,7 +35,8 @@ class DatabaseHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Football.db",
 
         db?.createTable(
             FavoriteTeam.TABLE_FAVORITE_TEAM, true,
-            FavoriteTeam.TEAM_ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            FavoriteTeam.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            FavoriteTeam.TEAM_ID to TEXT + UNIQUE,
             FavoriteTeam.TEAM_LOGO to TEXT,
             FavoriteTeam.TEAM_NAME to TEXT,
             FavoriteTeam.TEAM_BUILD_YEAR to TEXT,

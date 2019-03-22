@@ -11,21 +11,18 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_next_match.*
 import kotlinx.android.synthetic.main.fragment_next_match.view.*
 import me.qidonk.footballapp.R
-import me.qidonk.footballapp.main.SearchMatchActivity
 import me.qidonk.footballapp.main.adapter.MatchAdapter
 import me.qidonk.footballapp.model.Match
 import me.qidonk.footballapp.presenter.MatchPresenter
 import me.qidonk.footballapp.repository.ApiRepository
 import me.qidonk.footballapp.view.MatchView
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.startActivity
 
 class NextMatchFragment : Fragment(), MatchView {
 
     companion object {
         fun newInstance(): Fragment {
-            val fragment = NextMatchFragment()
-            return fragment
+            return NextMatchFragment()
         }
     }
 

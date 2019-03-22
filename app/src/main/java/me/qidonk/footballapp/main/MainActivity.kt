@@ -5,11 +5,8 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import me.qidonk.footballapp.R
-import me.qidonk.footballapp.main.fragment.favorites.FavoriteMatchFragment
 import me.qidonk.footballapp.main.fragment.favorites.FavoritesFragment
-import me.qidonk.footballapp.main.fragment.matches.LastMatchFragment
 import me.qidonk.footballapp.main.fragment.matches.MatchesFragment
-import me.qidonk.footballapp.main.fragment.matches.NextMatchFragment
 import me.qidonk.footballapp.main.fragment.teams.TeamsFragment
 
 class MainActivity : AppCompatActivity() {
@@ -33,9 +30,9 @@ class MainActivity : AppCompatActivity() {
     private fun loadFragment(fragment: Fragment, savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.main_frameLayout, fragment)
-                .commit()
+                    .beginTransaction()
+                    .replace(R.id.main_frameLayout, fragment)
+                    .commit()
         }
     }
 

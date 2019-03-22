@@ -8,10 +8,7 @@ import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_team.view.*
 import me.qidonk.footballapp.R
-import me.qidonk.footballapp.main.TeamDetailActivity
 import me.qidonk.footballapp.model.Team
-import org.jetbrains.anko.sdk27.coroutines.onClick
-import org.jetbrains.anko.startActivity
 
 class TeamAdapter(private val context: Context?, val teams: List<Team>, private val clickListener: (Team) -> Unit) :
         RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
@@ -38,8 +35,8 @@ class TeamAdapter(private val context: Context?, val teams: List<Team>, private 
     }
 
     class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val teamLogo = view.itemTeam_logo
-        val teamName = view.itemTeam_name
+        private val teamLogo = view.itemTeam_logo
+        private val teamName = view.itemTeam_name
 
         fun bindItem(team: Team) {
             Picasso.get().load(team.teamLogo).into(teamLogo)

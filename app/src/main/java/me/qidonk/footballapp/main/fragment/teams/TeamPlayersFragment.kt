@@ -9,10 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
-
-import kotlinx.android.synthetic.main.fragment_team_players.*
 import kotlinx.android.synthetic.main.fragment_team_players.view.*
-
 import me.qidonk.footballapp.R
 import me.qidonk.footballapp.main.PlayerDetailActivity
 import me.qidonk.footballapp.main.adapter.PlayerAdapter
@@ -54,7 +51,7 @@ class TeamPlayersFragment : Fragment(), TeamPlayerView {
 
         val repository = ApiRepository()
         val gson = Gson()
-        presenter =  TeamPlayerPresenter(this, repository, gson)
+        presenter = TeamPlayerPresenter(this, repository, gson)
 
         val teamId = arguments?.getString("teamId")
         presenter.getPlayerList(teamId)

@@ -13,14 +13,12 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_teams.*
 import kotlinx.android.synthetic.main.fragment_teams.view.*
 import me.qidonk.footballapp.R
-import me.qidonk.footballapp.main.SearchTeamActivity
 import me.qidonk.footballapp.main.TeamDetailActivity
 import me.qidonk.footballapp.main.adapter.TeamAdapter
 import me.qidonk.footballapp.model.Team
 import me.qidonk.footballapp.presenter.TeamPresenter
 import me.qidonk.footballapp.repository.ApiRepository
 import me.qidonk.footballapp.view.TeamsView
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.onRefresh
 
 class TeamsFragment : Fragment(), TeamsView {
@@ -33,8 +31,7 @@ class TeamsFragment : Fragment(), TeamsView {
 
     companion object {
         fun newInstance(): Fragment {
-            val fragment = TeamsFragment()
-            return fragment
+            return TeamsFragment()
         }
     }
 

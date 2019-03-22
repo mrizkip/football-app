@@ -10,11 +10,8 @@ import me.qidonk.footballapp.model.Player
 import me.qidonk.footballapp.presenter.PlayerDetailPresenter
 import me.qidonk.footballapp.repository.ApiRepository
 import me.qidonk.footballapp.view.PlayerDetailView
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 
 class PlayerDetailActivity : AppCompatActivity(), PlayerDetailView {
-    private val log = AnkoLogger(this::class.java)
 
     private lateinit var presenter: PlayerDetailPresenter
     private var mPlayer: Player? = null
@@ -23,7 +20,6 @@ class PlayerDetailActivity : AppCompatActivity(), PlayerDetailView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.elevation = 0f
 
         val repository = ApiRepository()
@@ -32,15 +28,14 @@ class PlayerDetailActivity : AppCompatActivity(), PlayerDetailView {
 
         val intent = intent
         val playerId = intent.getStringExtra("playerId")
-        log.info { "Player Id: $playerId" }
 
         presenter.getPlayerDetail(playerId)
     }
 
-    override fun showTeamDetail(data: Player) {
+    override fun showPlayerDetail(data: Player) {
         mPlayer = data
-        Picasso.get().load(mPlayer?.image).into(playerDetail_playerImage)
-        playerDetail_playerName.text = mPlayer?.name
+        supportActionBar?.title = mPlayer?.name
+        Picasso.get().load(mPlayer?.fanart).into(playerDetail_playerImage)
         playerDetail_playerPosition.text = mPlayer?.position
         playerDetail_tvHeight.text = mPlayer?.playerHeight
         playerDetail_tvtWeight.text = mPlayer?.playerWeight

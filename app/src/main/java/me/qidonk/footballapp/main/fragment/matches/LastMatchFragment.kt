@@ -10,23 +10,19 @@ import android.widget.ArrayAdapter
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_last_match.*
 import kotlinx.android.synthetic.main.fragment_last_match.view.*
-import kotlinx.android.synthetic.main.fragment_next_match.*
 import me.qidonk.footballapp.R
-import me.qidonk.footballapp.main.SearchMatchActivity
 import me.qidonk.footballapp.main.adapter.MatchAdapter
 import me.qidonk.footballapp.model.Match
 import me.qidonk.footballapp.presenter.MatchPresenter
 import me.qidonk.footballapp.repository.ApiRepository
 import me.qidonk.footballapp.view.MatchView
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.startActivity
 
 class LastMatchFragment : Fragment(), MatchView {
 
     companion object {
         fun newInstance(): LastMatchFragment {
-            val fragment = LastMatchFragment()
-            return fragment
+            return LastMatchFragment()
         }
     }
 

@@ -2,6 +2,7 @@ package me.qidonk.footballapp.model
 
 data class FavoriteTeam(
     val id: Long?,
+    val teamId: String?,
     val teamLogo: String?,
     val teamName: String?,
     val teamBuildYear: String?,
@@ -10,6 +11,7 @@ data class FavoriteTeam(
 ) {
     companion object {
         const val TABLE_FAVORITE_TEAM: String = "TABLE_FAVORITE_TEAM"
+        const val ID: String = "ID"
         const val TEAM_ID: String = "TEAM_ID"
         const val TEAM_LOGO: String = "TEAM_LOGO"
         const val TEAM_NAME: String = "TEAM_NAME"
