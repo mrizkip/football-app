@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import me.qidonk.footballapp.datasource.api.TheSportDBApi
+import me.qidonk.footballapp.model.Team
 import me.qidonk.footballapp.model.Teams
 import me.qidonk.footballapp.repository.ApiRepository
 import me.qidonk.footballapp.utils.CoroutineContexProvider
@@ -33,14 +34,18 @@ class TeamPresenter(
     fun searchTeam(teamName: String) {
         teamView.showLoading()
 
+        val teamList: MutableList<Team> = mutableListOf()
+
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
                 apiRepository
                     .doRequest(TheSportDBApi.searchTeam(teamName)).await(),
                 Teams::class.java
             )
+
+            data.teams?.let { teamList.addAll(data.teams) }
             teamView.hideLoading()
-            teamView.showTeamList(data.teams)
+            teamView.showTeamList(teamList)
         }
     }
 

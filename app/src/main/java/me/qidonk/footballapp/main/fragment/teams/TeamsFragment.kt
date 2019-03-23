@@ -1,6 +1,8 @@
 package me.qidonk.footballapp.main.fragment.teams
 
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -124,10 +126,19 @@ class TeamsFragment : Fragment(), TeamsView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.search_menu, menu)
 
-        val searchView = menu?.findItem(R.id.menu_search)?.actionView as? SearchView
+        val searchItem: MenuItem? = menu?.findItem(R.id.menu_search)
+
+        val searchManager: SearchManager =  activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+
+        var searchView: SearchView? = null
+
+        if (searchItem != null) {
+            searchView = searchItem.actionView as SearchView
+        }
+
+        searchView?.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
 
         searchView?.queryHint = "Search teams"
 
@@ -137,7 +148,11 @@ class TeamsFragment : Fragment(), TeamsView {
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
-                query?.let { presenter.searchTeam(it) }
+                if (query.equals("", true)) {
+                    presenter.getTeamList("4328")
+                } else {
+                    query?.let { presenter.searchTeam(it) }
+                }
                 return false
             }
         })
@@ -148,5 +163,7 @@ class TeamsFragment : Fragment(), TeamsView {
                 return true
             }
         })
+
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }
