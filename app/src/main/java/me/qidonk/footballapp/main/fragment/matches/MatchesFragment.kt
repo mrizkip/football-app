@@ -1,12 +1,14 @@
 package me.qidonk.footballapp.main.fragment.matches
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.view.*
 import kotlinx.android.synthetic.main.fragment_matches.*
 import me.qidonk.footballapp.R
+import me.qidonk.footballapp.main.SearchMatchActivity
 import me.qidonk.footballapp.main.adapter.MatchesViewPagerAdapter
 
 class MatchesFragment : Fragment() {
@@ -44,5 +46,17 @@ class MatchesFragment : Fragment() {
         matches_viewPager.adapter = adapter
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.search_match_menu, menu)
 
+        // TODO: set menu color to WHITE
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            R.id.menu_search_match -> startActivity(Intent(context, SearchMatchActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

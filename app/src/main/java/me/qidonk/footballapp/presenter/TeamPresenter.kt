@@ -9,12 +9,13 @@ import me.qidonk.footballapp.model.Teams
 import me.qidonk.footballapp.repository.ApiRepository
 import me.qidonk.footballapp.utils.CoroutineContexProvider
 import me.qidonk.footballapp.view.TeamsView
+import java.util.*
 
 class TeamPresenter(
-    private val teamView: TeamsView,
-    private val apiRepository: ApiRepository,
-    private val gson: Gson,
-    private val context: CoroutineContexProvider = CoroutineContexProvider()
+        private val teamView: TeamsView,
+        private val apiRepository: ApiRepository,
+        private val gson: Gson,
+        private val context: CoroutineContexProvider = CoroutineContexProvider()
 ) {
 
     fun getTeamList(leagueId: String) {
@@ -22,9 +23,9 @@ class TeamPresenter(
 
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
-                apiRepository
-                    .doRequest(TheSportDBApi.getTeamsbyLeagueId(leagueId)).await(),
-                Teams::class.java
+                    apiRepository
+                            .doRequest(TheSportDBApi.getTeamsbyLeagueId(leagueId)).await(),
+                    Teams::class.java
             )
             teamView.hideLoading()
             teamView.showTeamList(data.teams)
@@ -34,18 +35,15 @@ class TeamPresenter(
     fun searchTeam(teamName: String) {
         teamView.showLoading()
 
-        val teamList: MutableList<Team> = mutableListOf()
-
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
-                apiRepository
-                    .doRequest(TheSportDBApi.searchTeam(teamName)).await(),
-                Teams::class.java
+                    apiRepository
+                            .doRequest(TheSportDBApi.searchTeam(teamName)).await(),
+                    Teams::class.java
             )
 
-            data.teams?.let { teamList.addAll(data.teams) }
             teamView.hideLoading()
-            teamView.showTeamList(teamList)
+            teamView.showTeamList(data.teams ?: Collections.emptyList())
         }
     }
 

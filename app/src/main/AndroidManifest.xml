@@ -26,9 +26,9 @@
         </activity>
         <activity android:name=".main.PlayerDetailActivity">
         </activity>
-        <activity android:name=".main.SearchMatchActivity">
-        </activity>
-        <activity android:name=".main.SearchTeamActivity">
+        <activity android:name=".main.SearchMatchActivity"
+            android:theme="@style/AppThemeNoActionBar"
+            >
         </activity>
         <activity android:name=".main.TeamDetailActivity">
         </activity>
