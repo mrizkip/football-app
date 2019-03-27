@@ -4,8 +4,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import me.qidonk.footballapp.datasource.api.TheSportDBApi
-import me.qidonk.footballapp.model.Match
-import me.qidonk.footballapp.model.Matches
+import me.qidonk.footballapp.model.MatchSearch
 import me.qidonk.footballapp.repository.ApiRepository
 import me.qidonk.footballapp.utils.CoroutineContexProvider
 import me.qidonk.footballapp.view.SearchMatchView
@@ -23,7 +22,7 @@ class SearchMatchPresenter(
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
                     apiRepository.doRequest(TheSportDBApi.searchMatch(matchName)).await(),
-                    Matches::class.java
+                    MatchSearch::class.java
             )
 
             view.hideLoading()

@@ -9,7 +9,9 @@ import android.widget.TextView
 import me.qidonk.footballapp.R
 import me.qidonk.footballapp.main.DetailMatchActivity
 import me.qidonk.footballapp.model.Match
+import me.qidonk.footballapp.utils.DateHelper
 import org.jetbrains.anko.startActivity
+import java.util.*
 
 class MatchAdapter(
     private val context: Context?,
@@ -37,8 +39,11 @@ class MatchAdapter(
         private val time: TextView = view.findViewById(R.id.itemMatch_time)
 
         fun bindItem(match: Match) {
-            date.text = match.matchDate
-            time.text = match.matchTime
+            val dateTime: Date? = DateHelper.formatDateTimeToIndonesia(match.matchDate, match.matchTime)
+            val dateString = DateHelper.formatDate(dateTime)
+            val timeString = DateHelper.formatTime(dateTime)
+            date.text = dateString
+            time.text = timeString
             homeTeam.text = match.homeTeam
             awayTeam.text = match.awayTeam
             homeScore.text = match.scoreHome

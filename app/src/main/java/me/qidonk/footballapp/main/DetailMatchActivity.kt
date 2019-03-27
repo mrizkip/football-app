@@ -17,6 +17,7 @@ import me.qidonk.footballapp.model.Match
 import me.qidonk.footballapp.model.Team
 import me.qidonk.footballapp.presenter.DetailMatchPresenter
 import me.qidonk.footballapp.repository.ApiRepository
+import me.qidonk.footballapp.utils.DateHelper
 import me.qidonk.footballapp.utils.database
 import me.qidonk.footballapp.view.DetailMatchView
 import org.jetbrains.anko.db.classParser
@@ -24,6 +25,7 @@ import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 import java.sql.SQLClientInfoException
+import java.util.*
 
 class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
@@ -55,8 +57,11 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         mMatch = matches[0]
         favoriteState()
         setFavorite()
-        detailMatch_date.text = matches[0].matchDate
-        detailMatch_time.text = matches[0].matchTime
+        val dateTime: Date? = DateHelper.formatDateTimeToIndonesia(matches[0].matchDate, matches[0].matchTime)
+        val dateString = DateHelper.formatDate(dateTime)
+        val timeString = DateHelper.formatTime(dateTime)
+        detailMatch_date.text = dateString
+        detailMatch_time.text = timeString
         detailMatch_homeScore.text = matches[0].scoreHome
         detailMatch_awayScore.text = matches[0].scoreAway
         detailMatch_homeTeam.text = matches[0].homeTeam

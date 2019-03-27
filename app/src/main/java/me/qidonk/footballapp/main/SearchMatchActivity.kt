@@ -1,11 +1,14 @@
 package me.qidonk.footballapp.main
 
+import android.app.SearchManager
+import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
-import android.view.Menu
 import android.view.View
+import android.widget.EditText
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_search_match.*
 import me.qidonk.footballapp.R
@@ -25,6 +28,8 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_match)
 
+        setupSearchView()
+
         searchMatch_recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = MatchAdapter(this, matchList)
         searchMatch_recyclerView.adapter = adapter
@@ -32,6 +37,42 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         val repository = ApiRepository()
         val gson = Gson()
         presenter = SearchMatchPresenter(this, repository, gson)
+    }
+
+    private fun setupSearchView() {
+        val searchManager: SearchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchMatch_searchView.setSearchableInfo(searchManager.getSearchableInfo(this.componentName))
+        searchMatch_searchView.isIconified = false
+
+        val edtSearch: EditText = searchMatch_searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text)
+        edtSearch.setHintTextColor(Color.LTGRAY)
+        edtSearch.setTextColor(Color.WHITE)
+
+        searchMatch_searchView.queryHint = "Search Matches"
+
+        searchMatch_searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                if (query.equals("")) {
+                    matchList.clear()
+                    adapter.notifyDataSetChanged()
+                } else {
+                    query?.let { presenter.searchMatch(query) }
+                }
+                return false
+            }
+        })
+
+        searchMatch_searchView.setOnCloseListener(object : SearchView.OnCloseListener {
+            override fun onClose(): Boolean {
+                matchList.clear()
+                adapter.notifyDataSetChanged()
+                return true
+            }
+        })
     }
 
     override fun showLoading() {
@@ -46,33 +87,5 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         matchList.clear()
         matchList.addAll(matches)
         adapter.notifyDataSetChanged()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // TODO: SearchView onCreate using SearchView from layout
-        menuInflater.inflate(R.menu.search_menu, menu)
-        val searchView = menu?.findItem(R.id.menu_search)?.actionView as SearchView?
-        searchView?.queryHint = "Search Matches"
-
-        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(query: String?): Boolean {
-                query?.let { presenter.searchMatch(query) }
-                return false
-            }
-        })
-
-        searchView?.setOnCloseListener(object : SearchView.OnCloseListener {
-            override fun onClose(): Boolean {
-                matchList.clear()
-                adapter.notifyDataSetChanged()
-                return true
-            }
-        })
-
-        return super.onCreateOptionsMenu(menu)
     }
 }

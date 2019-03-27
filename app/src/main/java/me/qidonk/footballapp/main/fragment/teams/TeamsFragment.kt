@@ -148,7 +148,7 @@ class TeamsFragment : Fragment(), TeamsView {
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
-                if (query.equals("", true)) {
+                if (query.equals("")) {
                     presenter.getTeamList("4328")
                 } else {
                     query?.let { presenter.searchTeam(it) }

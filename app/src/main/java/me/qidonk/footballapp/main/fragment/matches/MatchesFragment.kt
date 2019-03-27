@@ -2,6 +2,9 @@ package me.qidonk.footballapp.main.fragment.matches
 
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
@@ -49,7 +52,9 @@ class MatchesFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater?.inflate(R.menu.search_match_menu, menu)
 
-        // TODO: set menu color to WHITE
+        val menuSearch = menu?.findItem(R.id.menu_search_match)
+        val drawable = menuSearch?.icon
+        drawable?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
