@@ -1,4 +1,4 @@
-package me.qidonk.footballapp
+package me.qidonk.footballapp.utils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

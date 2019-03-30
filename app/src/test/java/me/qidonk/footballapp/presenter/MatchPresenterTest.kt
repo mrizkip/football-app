@@ -3,7 +3,7 @@ package me.qidonk.footballapp.presenter
 import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import me.qidonk.footballapp.TestContextProvider
+import me.qidonk.footballapp.utils.TestContextProvider
 import me.qidonk.footballapp.datasource.api.TheSportDBApi
 import me.qidonk.footballapp.model.Match
 import me.qidonk.footballapp.model.Matches
@@ -30,7 +30,9 @@ class MatchPresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        matchPresenter = MatchPresenter(matchView, apiRepository, gson, TestContextProvider())
+        matchPresenter = MatchPresenter(matchView, apiRepository, gson,
+            TestContextProvider()
+        )
     }
 
     @Test
