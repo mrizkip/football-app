@@ -1,17 +1,21 @@
 package me.qidonk.footballapp.presenter
 
 import com.google.gson.Gson
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import me.qidonk.footballapp.utils.TestContextProvider
+import kotlinx.coroutines.runBlocking
 import me.qidonk.footballapp.datasource.api.TheSportDBApi
 import me.qidonk.footballapp.model.Match
 import me.qidonk.footballapp.model.Matches
 import me.qidonk.footballapp.repository.ApiRepository
+import me.qidonk.footballapp.utils.TestContextProvider
 import me.qidonk.footballapp.view.MatchView
 import org.junit.Before
 import org.junit.Test
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
@@ -24,15 +28,15 @@ class MatchPresenterTest {
     @Mock
     private lateinit var apiRepository: ApiRepository
     @Mock
+    private lateinit var apiResponse: Deferred<String>
+    @Mock
     private lateinit var matchPresenter: MatchPresenter
 
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        matchPresenter = MatchPresenter(matchView, apiRepository, gson,
-            TestContextProvider()
-        )
+        matchPresenter = MatchPresenter(matchView, apiRepository, gson, TestContextProvider())
     }
 
     @Test
@@ -41,20 +45,24 @@ class MatchPresenterTest {
         val response = Matches(matches)
         val leagueId = "4328"
 
-        GlobalScope.launch {
-            `when`(
+        runBlocking {
+            Mockito.`when`(apiRepository.doRequest(ArgumentMatchers.anyString()))
+                .thenReturn(apiResponse)
+
+            Mockito.`when`(apiResponse.await()).thenReturn("")
+
+            Mockito.`when`(
                 gson.fromJson(
-                    apiRepository
-                        .doRequest(TheSportDBApi.getLastMatch(leagueId)).await(),
+                    "",
                     Matches::class.java
                 )
             ).thenReturn(response)
 
             matchPresenter.getLastMatch(leagueId)
 
-            verify(matchView).showLoading()
-            verify(matchView).showMatchList(matches)
-            verify(matchView).hideLoading()
+            Mockito.verify(matchView).showLoading()
+            Mockito.verify(matchView).showMatchList(matches)
+            Mockito.verify(matchView).hideLoading()
         }
     }
 
@@ -64,20 +72,24 @@ class MatchPresenterTest {
         val response = Matches(matches)
         val leagueId = "4328"
 
-        GlobalScope.launch {
-            `when`(
+        runBlocking {
+            Mockito.`when`(apiRepository.doRequest(ArgumentMatchers.anyString()))
+                .thenReturn(apiResponse)
+
+            Mockito.`when`(apiResponse.await()).thenReturn("")
+
+            Mockito.`when`(
                 gson.fromJson(
-                    apiRepository
-                        .doRequest(TheSportDBApi.getNextMatch(leagueId)).await(),
+                    "",
                     Matches::class.java
                 )
             ).thenReturn(response)
 
             matchPresenter.getNextMatch(leagueId)
 
-            verify(matchView).showLoading()
-            verify(matchView).showMatchList(matches)
-            verify(matchView).hideLoading()
+            Mockito.verify(matchView).showLoading()
+            Mockito.verify(matchView).showMatchList(matches)
+            Mockito.verify(matchView).hideLoading()
         }
     }
 }

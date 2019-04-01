@@ -20,16 +20,12 @@ import org.mockito.MockitoAnnotations
 class TeamPresenterTest {
     @Mock
     private lateinit var view: TeamsView
-
     @Mock
     private lateinit var gson: Gson
-
     @Mock
     private lateinit var apiRepository: ApiRepository
-
     @Mock
     private lateinit var apiResponse: Deferred<String>
-
     @Mock
     private lateinit var teamPresenter: TeamPresenter
 
@@ -68,5 +64,28 @@ class TeamPresenterTest {
 
     @Test
     fun searchTeamTest() {
+        val teams: MutableList<Team> = mutableListOf()
+        val response = Teams(teams)
+        val teamName = "Chelsea"
+
+        runBlocking {
+            Mockito.`when`(apiRepository.doRequest(ArgumentMatchers.anyString()))
+                .thenReturn(apiResponse)
+
+            Mockito.`when`(apiResponse.await()).thenReturn("")
+
+            Mockito.`when`(
+                gson.fromJson(
+                    "",
+                    Teams::class.java
+                )
+            ).thenReturn(response)
+
+            teamPresenter.searchTeam(teamName)
+
+            Mockito.verify(view).showLoading()
+            Mockito.verify(view).showTeamList(teams)
+            Mockito.verify(view).hideLoading()
+        }
     }
 }
