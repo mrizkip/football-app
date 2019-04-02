@@ -1,6 +1,7 @@
 package me.qidonk.footballapp.main.fragment.favorites
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_favorite_match.*
 import kotlinx.android.synthetic.main.fragment_favorite_match.view.*
 import me.qidonk.footballapp.R
+import me.qidonk.footballapp.main.DetailMatchActivity
 import me.qidonk.footballapp.main.adapter.MatchAdapter
 import me.qidonk.footballapp.model.Match
 import me.qidonk.footballapp.presenter.FavoriteMatchPresenter
@@ -43,7 +45,13 @@ class FavoriteMatchFragment : Fragment(), FavoriteMatchView {
         super.onViewCreated(view, savedInstanceState)
 
         view.favoritematch_recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = MatchAdapter(context, favoritesMatch)
+        adapter = MatchAdapter(context, favoritesMatch) {
+            val intent = Intent(context, DetailMatchActivity::class.java)
+                .putExtra("matchId", it.matchId)
+                .putExtra("homeTeamId", it.homeTeamId)
+                .putExtra("awayTeamId", it.awayTeamId)
+            startActivity(intent)
+        }
         view.favoritematch_recyclerView.adapter = adapter
 
         val localRepository = LocalRepository(context!!)

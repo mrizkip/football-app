@@ -15,11 +15,21 @@ import java.util.*
 
 class MatchAdapter(
     private val context: Context?,
-    private val matches: List<Match>
+    private val matches: List<Match>,
+    val clickListener: (Match) -> Unit
 ) : RecyclerView.Adapter<MatchAdapter.MatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
-        return MatchViewHolder(LayoutInflater.from(context).inflate(R.layout.item_match, parent, false))
+        val rootView =LayoutInflater.from(context).inflate(R.layout.item_match, parent, false)
+
+        return MatchViewHolder(rootView).apply {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    clickListener(matches[position])
+                }
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -48,14 +58,6 @@ class MatchAdapter(
             awayTeam.text = match.awayTeam
             homeScore.text = match.scoreHome
             awayScore.text = match.scoreAway
-
-            itemView.setOnClickListener {
-                itemView.context.startActivity<DetailMatchActivity>(
-                    "matchId" to match.matchId,
-                    "homeTeamId" to match.homeTeamId,
-                    "awayTeamId" to match.awayTeamId
-                )
-            }
         }
     }
 }

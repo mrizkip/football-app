@@ -8,7 +8,6 @@ import me.qidonk.footballapp.model.Teams
 import me.qidonk.footballapp.repository.ApiRepository
 import me.qidonk.footballapp.utils.CoroutineContexProvider
 import me.qidonk.footballapp.view.TeamsView
-import java.util.*
 
 class TeamPresenter(
     private val teamView: TeamsView,
@@ -42,7 +41,7 @@ class TeamPresenter(
             )
 
             teamView.hideLoading()
-            teamView.showTeamList(data.teams ?: Collections.emptyList())
+            teamView.showTeamList(data.teams)
         }
     }
 

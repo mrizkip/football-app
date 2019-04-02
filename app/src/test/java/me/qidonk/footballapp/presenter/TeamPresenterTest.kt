@@ -10,8 +10,6 @@ import me.qidonk.footballapp.utils.TestContextProvider
 import me.qidonk.footballapp.view.TeamsView
 import org.junit.Before
 import org.junit.Test
-
-import org.junit.Assert.*
 import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito

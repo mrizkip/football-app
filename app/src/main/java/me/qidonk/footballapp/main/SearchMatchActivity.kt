@@ -2,6 +2,7 @@ package me.qidonk.footballapp.main
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -31,7 +32,13 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         setupSearchView()
 
         searchMatch_recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MatchAdapter(this, matchList)
+        adapter = MatchAdapter(this, matchList) {
+            val intent = Intent(this, DetailMatchActivity::class.java)
+                .putExtra("matchId", it.matchId)
+                .putExtra("homeTeamId", it.homeTeamId)
+                .putExtra("awayTeamId", it.awayTeamId)
+            startActivity(intent)
+        }
         searchMatch_recyclerView.adapter = adapter
 
         val repository = ApiRepository()

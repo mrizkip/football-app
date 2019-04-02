@@ -1,6 +1,7 @@
 package me.qidonk.footballapp.main.fragment.matches
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_last_match.*
 import kotlinx.android.synthetic.main.fragment_last_match.view.*
 import me.qidonk.footballapp.R
+import me.qidonk.footballapp.main.DetailMatchActivity
 import me.qidonk.footballapp.main.adapter.MatchAdapter
 import me.qidonk.footballapp.model.Match
 import me.qidonk.footballapp.presenter.MatchPresenter
@@ -44,7 +46,13 @@ class LastMatchFragment : Fragment(), MatchView {
         super.onViewCreated(view, savedInstanceState)
 
         view.lastMatch_recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = MatchAdapter(context, matches)
+        adapter = MatchAdapter(context, matches) {
+            val intent = Intent(context, DetailMatchActivity::class.java)
+                .putExtra("matchId", it.matchId)
+                .putExtra("homeTeamId", it.homeTeamId)
+                .putExtra("awayTeamId", it.awayTeamId)
+            startActivity(intent)
+        }
         view.lastMatch_recyclerView.adapter = adapter
 
         val repository = ApiRepository()

@@ -2,10 +2,7 @@ package me.qidonk.footballapp.presenter
 
 import com.google.gson.Gson
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import me.qidonk.footballapp.datasource.api.TheSportDBApi
 import me.qidonk.footballapp.model.Match
 import me.qidonk.footballapp.model.Matches
 import me.qidonk.footballapp.repository.ApiRepository
@@ -16,8 +13,6 @@ import org.junit.Test
 import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 class MatchPresenterTest {
