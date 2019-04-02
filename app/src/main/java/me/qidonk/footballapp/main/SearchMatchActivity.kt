@@ -73,13 +73,11 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
             }
         })
 
-        searchMatch_searchView.setOnCloseListener(object : SearchView.OnCloseListener {
-            override fun onClose(): Boolean {
-                matchList.clear()
-                adapter.notifyDataSetChanged()
-                return true
-            }
-        })
+        searchMatch_searchView.setOnCloseListener {
+            matchList.clear()
+            adapter.notifyDataSetChanged()
+            true
+        }
     }
 
     override fun showLoading() {

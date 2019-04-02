@@ -8,6 +8,7 @@ import me.qidonk.footballapp.model.MatchSearch
 import me.qidonk.footballapp.repository.ApiRepository
 import me.qidonk.footballapp.utils.CoroutineContexProvider
 import me.qidonk.footballapp.view.SearchMatchView
+import java.util.*
 
 class SearchMatchPresenter(
         private val view: SearchMatchView,
@@ -25,7 +26,7 @@ class SearchMatchPresenter(
             )
 
             view.hideLoading()
-            view.showMatch(data.matches)
+            view.showMatch(data.matches ?: Collections.emptyList())
         }
     }
 }

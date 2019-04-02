@@ -157,12 +157,10 @@ class TeamsFragment : Fragment(), TeamsView {
             }
         })
 
-        searchView?.setOnCloseListener(object : SearchView.OnCloseListener {
-            override fun onClose(): Boolean {
-                presenter.getTeamList("4328")
-                return true
-            }
-        })
+        searchView?.setOnCloseListener {
+            presenter.getTeamList("4328")
+            true
+        }
 
         super.onCreateOptionsMenu(menu, inflater)
     }
