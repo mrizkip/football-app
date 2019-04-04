@@ -9,15 +9,27 @@ import android.widget.TextView
 import me.qidonk.footballapp.R
 import me.qidonk.footballapp.main.DetailMatchActivity
 import me.qidonk.footballapp.model.Match
+import me.qidonk.footballapp.utils.DateHelper
 import org.jetbrains.anko.startActivity
+import java.util.*
 
 class MatchAdapter(
     private val context: Context?,
-    private val matches: List<Match>
+    private val matches: List<Match>,
+    val clickListener: (Match) -> Unit
 ) : RecyclerView.Adapter<MatchAdapter.MatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
-        return MatchViewHolder(LayoutInflater.from(context).inflate(R.layout.item_match, parent, false))
+        val rootView =LayoutInflater.from(context).inflate(R.layout.item_match, parent, false)
+
+        return MatchViewHolder(rootView).apply {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    clickListener(matches[position])
+                }
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -34,21 +46,18 @@ class MatchAdapter(
         private val awayTeam: TextView = view.findViewById(R.id.itemMatch_awayTeam)
         private val homeScore: TextView = view.findViewById(R.id.itemMatch_homeScore)
         private val awayScore: TextView = view.findViewById(R.id.itemMatch_awayScore)
+        private val time: TextView = view.findViewById(R.id.itemMatch_time)
 
         fun bindItem(match: Match) {
-            date.text = match.matchDate
+            val dateTime: Date? = DateHelper.formatDateTimeToIndonesia(match.matchDate, match.matchTime)
+            val dateString = DateHelper.formatDate(dateTime)
+            val timeString = DateHelper.formatTime(dateTime)
+            date.text = dateString
+            time.text = timeString
             homeTeam.text = match.homeTeam
             awayTeam.text = match.awayTeam
             homeScore.text = match.scoreHome
             awayScore.text = match.scoreAway
-
-            itemView.setOnClickListener {
-                itemView.context.startActivity<DetailMatchActivity>(
-                    "matchId" to match.matchId,
-                    "homeTeamId" to match.homeTeamId,
-                    "awayTeamId" to match.awayTeamId
-                )
-            }
         }
     }
 }

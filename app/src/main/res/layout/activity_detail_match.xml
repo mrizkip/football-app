@@ -1,446 +1,457 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/detailMatch_parent"
-            tools:context=".main.DetailMatchActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailMatch_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.DetailMatchActivity">
 
     <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/detailMatch_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Date" />
 
         <TextView
-                android:id="@+id/detailMatch_date"
-                android:layout_width="match_parent"
+            android:id="@+id/detailMatch_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailMatch_date"
+            tools:text="00:00" />
+
+        <TextView
+            android:id="@+id/detailMatch_vs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/vs"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/detailMatch_time"
+            app:layout_constraintStart_toStartOf="@id/detailMatch_time"
+            app:layout_constraintTop_toBottomOf="@id/detailMatch_time" />
+
+        <TextView
+            android:id="@+id/detailMatch_homeScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/detailMatch_vs"
+            app:layout_constraintEnd_toStartOf="@id/detailMatch_vs"
+            app:layout_constraintTop_toTopOf="@id/detailMatch_vs"
+            tools:text="0" />
+
+        <ImageView
+            android:id="@+id/detailMatch_homeLogo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/home_logo"
+            app:layout_constraintBottom_toBottomOf="@id/detailMatch_homeScore"
+            app:layout_constraintEnd_toStartOf="@id/detailMatch_homeScore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/detailMatch_homeScore" />
+
+        <TextView
+            android:id="@+id/detailMatch_homeTeam"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/detailMatch_homeScore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailMatch_homeLogo"
+            tools:text="Home Team" />
+
+        <TextView
+            android:id="@+id/detailMatch_awayScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/detailMatch_vs"
+            app:layout_constraintStart_toEndOf="@id/detailMatch_vs"
+            app:layout_constraintTop_toTopOf="@id/detailMatch_vs"
+            tools:text="0" />
+
+        <ImageView
+            android:id="@+id/detailMatch_awayLogo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/away_logo"
+            app:layout_constraintBottom_toBottomOf="@id/detailMatch_awayScore"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/detailMatch_awayScore"
+            app:layout_constraintTop_toTopOf="@id/detailMatch_awayScore" />
+
+        <TextView
+            android:id="@+id/detailMatch_awayTeam"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/detailMatch_awayScore"
+            app:layout_constraintTop_toBottomOf="@id/detailMatch_awayLogo"
+            tools:text="Away Team" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/detailMatch_layoutGoals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailMatch_homeTeam">
+
+            <TextView
+                android:id="@+id/detailMatch_goals"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:text="@string/goals"
                 android:textColor="@color/colorPrimary"
-                tools:text="Date"/>
-
-        <TextView
-                android:id="@+id/detailMatch_vs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/vs"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/detailMatch_date"
-                app:layout_constraintStart_toStartOf="@id/detailMatch_date"
-                app:layout_constraintTop_toBottomOf="@id/detailMatch_date"/>
-
-        <TextView
-                android:id="@+id/detailMatch_homeScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/detailMatch_vs"
-                app:layout_constraintEnd_toStartOf="@id/detailMatch_vs"
-                app:layout_constraintTop_toTopOf="@id/detailMatch_vs"
-                tools:text="0"/>
-
-        <ImageView
-                android:id="@+id/detailMatch_homeLogo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/home_logo"
-                app:layout_constraintBottom_toBottomOf="@id/detailMatch_homeScore"
-                app:layout_constraintEnd_toStartOf="@id/detailMatch_homeScore"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/detailMatch_homeScore"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-                android:id="@+id/detailMatch_homeTeam"
+            <TextView
+                android:id="@+id/detailMatch_homeGoal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@id/detailMatch_homeScore"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="start"
+                android:textAlignment="textStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/detailMatch_goals"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/detailMatch_homeLogo"
-                tools:text="Home Team"/>
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0 Player" />
 
-        <TextView
-                android:id="@+id/detailMatch_awayScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/detailMatch_vs"
-                app:layout_constraintStart_toEndOf="@id/detailMatch_vs"
-                app:layout_constraintTop_toTopOf="@id/detailMatch_vs"
-                tools:text="0"/>
-
-        <ImageView
-                android:id="@+id/detailMatch_awayLogo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/away_logo"
-                app:layout_constraintBottom_toBottomOf="@id/detailMatch_awayScore"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/detailMatch_awayScore"
-                app:layout_constraintTop_toTopOf="@id/detailMatch_awayScore"/>
-
-        <TextView
-                android:id="@+id/detailMatch_awayTeam"
+            <TextView
+                android:id="@+id/detailMatch_awayGoal"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/detailMatch_awayScore"
-                app:layout_constraintTop_toBottomOf="@id/detailMatch_awayLogo"
-                tools:text="Away Team"/>
-
-        <android.support.constraint.ConstraintLayout
-                android:id="@+id/detailMatch_layoutGoals"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/detailMatch_homeTeam">
-
-            <TextView
-                    android:id="@+id/detailMatch_goals"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/goals"
-                    android:textColor="@color/colorPrimary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-            <TextView
-                    android:id="@+id/detailMatch_homeGoal"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/detailMatch_goals"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="0 Player"/>
-
-            <TextView
-                    android:id="@+id/detailMatch_awayGoal"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="end"
-                    android:textAlignment="textEnd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/detailMatch_goals"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="0 Player"/>
-
-        </android.support.constraint.ConstraintLayout>
-
-        <android.support.constraint.ConstraintLayout
-                android:id="@+id/detailMatch_layoutShots"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/detailMatch_layoutGoals">
-
-            <TextView
-                    android:id="@+id/detailMatch_shots"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/shots"
-                    android:textColor="@color/colorPrimary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-            <TextView
-                    android:id="@+id/detailMatch_homeShots"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/detailMatch_shots"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="0"/>
-
-            <TextView
-                    android:id="@+id/detailMatch_awayShots"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="end"
-                    android:textAlignment="textEnd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/detailMatch_shots"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="0"/>
-        </android.support.constraint.ConstraintLayout>
-
-        <TextView
-                android:id="@+id/detailMatch_lineup"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/lineup"
-                android:textSize="18sp"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/detailMatch_goals"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0 Player" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/detailMatch_layoutShots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/detailMatch_layoutGoals">
+
+            <TextView
+                android:id="@+id/detailMatch_shots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shots"
+                android:textColor="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detailMatch_layoutShots"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/detailMatch_homeShots"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="start"
+                android:textAlignment="textStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/detailMatch_shots"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/detailMatch_awayShots"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/detailMatch_shots"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/detailMatch_lineup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/lineup"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailMatch_layoutShots" />
 
         <android.support.constraint.ConstraintLayout
-                android:id="@+id/detailMatch_layoutGoalkeeper"
-                android:layout_width="match_parent"
+            android:id="@+id/detailMatch_layoutGoalkeeper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/detailMatch_lineup">
+
+            <TextView
+                android:id="@+id/detailMatch_goalkeeper"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/detailMatch_lineup">
+                android:text="@string/goalkeeper"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                    android:id="@+id/detailMatch_goalkeeper"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/goalkeeper"
-                    android:textColor="@color/colorPrimary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                android:id="@+id/detailMatch_homeGoalkeeper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="start"
+                android:textAlignment="textStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/detailMatch_goalkeeper"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Home GK" />
 
             <TextView
-                    android:id="@+id/detailMatch_homeGoalkeeper"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/detailMatch_goalkeeper"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Home GK"/>
-
-            <TextView
-                    android:id="@+id/detailMatch_awayGoalkeeper"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="end"
-                    android:textAlignment="textEnd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/detailMatch_goalkeeper"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Away GK"/>
+                android:id="@+id/detailMatch_awayGoalkeeper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/detailMatch_goalkeeper"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Away GK" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-                android:id="@+id/detailMatch_layoutDefense"
-                android:layout_width="match_parent"
+            android:id="@+id/detailMatch_layoutDefense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/detailMatch_layoutGoalkeeper">
+
+            <TextView
+                android:id="@+id/detailMatch_defense"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/detailMatch_layoutGoalkeeper">
+                android:text="@string/defense"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                    android:id="@+id/detailMatch_defense"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/defense"
-                    android:textColor="@color/colorPrimary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                android:id="@+id/detailMatch_homeDefense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="start"
+                android:textAlignment="textStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/detailMatch_defense"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Home Def" />
 
             <TextView
-                    android:id="@+id/detailMatch_homeDefense"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/detailMatch_defense"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Home Def"/>
-
-            <TextView
-                    android:id="@+id/detailMatch_awayDefense"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="end"
-                    android:textAlignment="textEnd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/detailMatch_defense"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Away Def"/>
+                android:id="@+id/detailMatch_awayDefense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/detailMatch_defense"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Away Def" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-                android:id="@+id/detailMatch_layoutMidfield"
-                android:layout_width="match_parent"
+            android:id="@+id/detailMatch_layoutMidfield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/detailMatch_layoutDefense">
+
+            <TextView
+                android:id="@+id/detailMatch_midfield"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/detailMatch_layoutDefense">
+                android:text="@string/midfield"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                    android:id="@+id/detailMatch_midfield"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/midfield"
-                    android:textColor="@color/colorPrimary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                android:id="@+id/detailMatch_homeMidfield"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="start"
+                android:textAlignment="textStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/detailMatch_midfield"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Home Midfield" />
 
             <TextView
-                    android:id="@+id/detailMatch_homeMidfield"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/detailMatch_midfield"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Home Midfield"/>
-
-            <TextView
-                    android:id="@+id/detailMatch_awayMidfield"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="end"
-                    android:textAlignment="textEnd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/detailMatch_midfield"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Away Midfield"/>
+                android:id="@+id/detailMatch_awayMidfield"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/detailMatch_midfield"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Away Midfield" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-                android:id="@+id/detailMatch_layoutForward"
-                android:layout_width="match_parent"
+            android:id="@+id/detailMatch_layoutForward"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/detailMatch_layoutMidfield">
+
+            <TextView
+                android:id="@+id/detailMatch_forward"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/detailMatch_layoutMidfield">
+                android:text="@string/forward"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                    android:id="@+id/detailMatch_forward"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/forward"
-                    android:textColor="@color/colorPrimary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                android:id="@+id/detailMatch_homeForward"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="start"
+                android:textAlignment="textStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/detailMatch_forward"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Home Forward" />
 
             <TextView
-                    android:id="@+id/detailMatch_homeForward"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/detailMatch_forward"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Home Forward"/>
-
-            <TextView
-                    android:id="@+id/detailMatch_awayForward"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="end"
-                    android:textAlignment="textEnd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/detailMatch_forward"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Away Forward"/>
+                android:id="@+id/detailMatch_awayForward"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/detailMatch_forward"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Away Forward" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-                android:id="@+id/detailMatch_layoutSubtitutes"
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/detailMatch_layoutForward">
+
+            <TextView
+                android:id="@+id/detailMatch_subtitutes"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/detailMatch_layoutForward">
+                android:text="@string/subtitutes"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                    android:id="@+id/detailMatch_subtitutes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/subtitutes"
-                    android:textColor="@color/colorPrimary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="start"
+                android:textAlignment="textStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/detailMatch_subtitutes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Home Subtitutes" />
 
             <TextView
-                    android:id="@+id/detailMatch_homeSubtitutes"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/detailMatch_subtitutes"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Home Subtitutes"/>
-
-            <TextView
-                    android:id="@+id/detailMatch_awaySubtitutes"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="end"
-                    android:textAlignment="textEnd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/detailMatch_subtitutes"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Away Subtitutes"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/detailMatch_subtitutes"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Away Subtitutes" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>

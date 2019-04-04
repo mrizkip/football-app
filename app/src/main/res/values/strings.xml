@@ -14,8 +14,23 @@
     <string name="forward">Forward</string>
     <string name="subtitutes">Subtitutes</string>
     <string name="favorites">Favorites</string>
-    <string name="prev_match">Prev Match</string>
-    <string name="next_match">Next Match</string>
+    <string name="matches">Matches</string>
+    <string name="teams">Teams</string>
+    <string name="search">Search</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="team_logo">team logo</string>
+    <string name="player_detail_player_image">Player Image</string>
+    <string name="item_player_player_fanart">Player FanArt</string>
+    <string name="player_detail_height_m">Height (m)</string>
+    <string name="player_detail_weight_kg">Weight (Kg)</string>
+
+    <array name="league_array">
+        <item>English Premier League</item>
+        <item>German Bundesliga</item>
+        <item>Italian Serie A</item>
+        <item>French Ligue 1</item>
+        <item>Spanish La Liga</item>
+        <item>Netherlands Eredivisie</item>
+    </array>
+
 </resources>
